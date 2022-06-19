@@ -2,7 +2,7 @@
 
 html {
   box-sizing: border-box;
-  font-size: 16px;
+  font-size: 14px;
   font-family: sans-serif;
   scroll-behavior: smooth;
 }
@@ -339,4 +339,88 @@ img {
   grid-template-columns: repeat(4, minmax(100px, max-content));
   grid-template-columns: repeat(4, minmax(max-content, 200px));
   grid-template-columns: repeat(4, minmax(min-content, max-content));
+}
+
+/* ----------------------------------------------------------------------------- */
+/* Las maneras que se pueden repetir los patrones para las columnas y filas*/
+
+.grid-repeat {
+  display: grid;
+  /* 4 x ? */
+  /*La función repeat solo se puede usar en grid-template-columns y grid-template-rows*/
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 10% 20% 30% 40%);
+  grid-template-columns: repeat(2, 10% 20% 30% 40%);
+  /*esto quiere decir 4x4*/
+  grid-template-columns: repeat(1, 10% 20% 30% 40%);
+  grid-template-rows: repeat(2, 10vh 20vh);
+  /**/
+  grid-auto-flow: row; /*solo como referencia, porque el flujo ya se encuentra en filas*/
+  grid-auto-rows: 100px;
+}
+
+/* ------------------------------------------------------------------------------- */
+/* GRID DINÁMICAS*/
+
+.grid-dynamics {
+  display: grid;
+  /*Grid 4x?*/
+  grid-template-columns: repeat(4, 100px);
+  /*auto-fill rellana la grid con tracks generados dinámicamente*/
+  grid-template-columns: repeat(auto-fill, 100px);
+  /*auto-fit ajusta la grid con los tracks existentes*/
+  grid-template-columns: repeat(auto-fit, 100px);
+
+  /*cuando llega a 100px entonces un elemento se baja y los restantes
+  obtienen el maximo de lo que se pueden repartir del elemente padre*/
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  /*de una vez de ajusta al tamaño del elemento grid padre*/
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+}
+
+/* --------------------------------------------------------------------------------- */
+/* RESPONSIVE SIN MEDIA QUERIES */
+
+.grid-responsive {
+  display: grid;
+  /*auto-fit, ajustate a los elemento que tienes disponibles*/
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0;
+}
+
+/* --------------------------------------------------------------------------------- */
+/* GRID ANANIDADOS Y SUBGRIDS*/
+
+.grid-nested {
+  display: grid;
+  /*Grid 3x?*/
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.sub-item {
+  padding: 0.5rem;
+  background-color: #ddd;
+  border: thin solid #cccc56;
+}
+
+.grid {
+  display: grid;
+  /*Grid de 3x2*/
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+}
+
+.subgrid {
+  /*Subgrid solo esta soportado por firefox y safari, revisar siempre can i use*/
+  /*Para que la característica de subgrid funciones es necesario hacer lo siguiente:
+  1) Definir explícitamente el tamaño que ocupará el elemento que aplicará subgrid dentro del contenedor padre
+  grid, es decir definir sus propiedades grid-column y grid-row o grid-area
+  2) Aplicar display grid al elemento que aplicará subgrid
+  3) Aplicar el valor subgrid a las columnas, o a las filas o ambas depende de cómo se requiera
+  */
+  grid-column: span 3;
+  grid-row: span 2;
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-template-rows: subgrid;
 }
