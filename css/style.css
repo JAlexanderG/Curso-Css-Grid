@@ -184,7 +184,7 @@ img {
 
 /* ------------------------------------------------------------------------ */
 /* - FLUJO DE LA GRID - */
-/* Para como aprovechar los espacios que quedan para les elementos implícitos, y tambien para aprovechar agunos espacios que por algún motivo quedan vacíos, para poder llenarlos o más bien utilizarlos*/
+/* Para como aprovechar los espacios que quedan para los elementos implícitos, y tambien para aprovechar agunos espacios que por algún motivo quedan vacíos, para poder llenarlos o más bien utilizarlos*/
 
 .grid-flow {
   display: grid;
@@ -366,7 +366,7 @@ img {
   display: grid;
   /*Grid 4x?*/
   grid-template-columns: repeat(4, 100px);
-  /*auto-fill rellana la grid con tracks generados dinámicamente*/
+  /*auto-fill rellena la grid con tracks generados dinámicamente*/
   grid-template-columns: repeat(auto-fill, 100px);
   /*auto-fit ajusta la grid con los tracks existentes*/
   grid-template-columns: repeat(auto-fit, 100px);
